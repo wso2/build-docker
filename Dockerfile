@@ -147,6 +147,13 @@ RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.g
 RUN wget -P /build/software/go https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.12.5.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.12.5 && rm /build/software/go/go1.12.5.linux-amd64.tar.gz
 
+RUN cp -r /build/software/go/go-1.12.5 /usr/local/go
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN curl https://glide.sh/get | sh
+
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
