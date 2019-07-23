@@ -61,6 +61,11 @@ wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-2/2.2.
 
 RUN mkdir -p /build/software/java
 
+RUN \
+wget -P /build/software/java https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz \
+&& tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
+&& rm /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz
+
 COPY jdk-8u171-linux-x64.tar.gz /build/software/java
 
 RUN \
