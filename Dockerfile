@@ -155,7 +155,8 @@ apt-get update  && apt-get -y install python3-pip \
 && pip3 --version \
 && apt-get -y install build-essential python3-dev \
 && pip3 install mkdocs==1.0.4 && mkdocs --version \
-&& pip3 install mkdocs-material==4.4.0
+&& pip3 install mkdocs-material==4.4.0 \
+&& apt-get -y install jq
 
 RUN \
 apt-get update && apt-get -y install python-pip \
