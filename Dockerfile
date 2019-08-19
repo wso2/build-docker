@@ -142,6 +142,9 @@ chmod a+x /build/software/java/jdk-6u33-linux-x64.bin \
 && rm /build/software/java/jdk-6u33-linux-x64.bin
 
 RUN \
+wget -P /build/software/nodejs https://nodejs.org/dist/v8.8.1/node-v8.8.1-linux-x64.tar.xz \
+&& tar -xvf /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz --directory /build/software/nodejs \
+&& rm /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz \
 wget -P /build/software/nodejs https://nodejs.org/dist/v10.16.2/node-v10.16.2-linux-x64.tar.xz \
 && tar -xvf /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz --directory /build/software/nodejs \
 && rm /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz
@@ -175,7 +178,6 @@ apt-get update && apt-get -y install python-pip \
 && pip install beautifulsoup4 \
 && apt-get install python-lxml
 
-ENV PATH=$PATH:/build/software/nodejs/node-v10.16.2-linux-x64/bin
 
 RUN \
 echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
