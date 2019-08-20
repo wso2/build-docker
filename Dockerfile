@@ -18,7 +18,7 @@
 
 FROM ubuntu:trusty
 
-RUN \ 
+RUN \
 apt-get -q update && apt-get install -y openssh-server software-properties-common git ant curl zip unzip xvfb dbus-x11 ttf-ancient-fonts \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
@@ -144,7 +144,10 @@ chmod a+x /build/software/java/jdk-6u33-linux-x64.bin \
 RUN \
 wget -P /build/software/nodejs https://nodejs.org/dist/v8.8.1/node-v8.8.1-linux-x64.tar.xz \
 && tar -xvf /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz --directory /build/software/nodejs \
-&& rm /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz
+&& rm /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz \
+wget -P /build/software/nodejs https://nodejs.org/dist/v10.16.2/node-v10.16.2-linux-x64.tar.xz \
+&& tar -xvf /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz --directory /build/software/nodejs \
+&& rm /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz
 
 RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.10.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.10 && rm /build/software/go/go1.10.linux-amd64.tar.gz
@@ -175,7 +178,6 @@ apt-get update && apt-get -y install python-pip \
 && pip install beautifulsoup4 \
 && apt-get install python-lxml
 
-ENV PATH=$PATH:/build/software/nodejs/node-v8.8.1-linux-x64/bin
 
 RUN \
 echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
@@ -188,7 +190,7 @@ echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
 RUN \
 mkdir -p /home/jenkins
 
-RUN mkdir -p /build/gpg-keys/.gnupg 
+RUN mkdir -p /build/gpg-keys/.gnupg
 ADD .gnupg /build/gpg-keys/.gnupg
 
 ARG JENKINS_REMOTING_VERSION=3.5
