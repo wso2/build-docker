@@ -61,6 +61,12 @@ wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-2/2.2.
 
 RUN mkdir -p /build/software/java
 
+COPY OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz /build/software/java
+
+RUN \
+tar -xvzf /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz --directory /build/software/java \
+&& rm /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz
+
 RUN \
 wget -P /build/software/java https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz \
 && tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
@@ -144,7 +150,9 @@ chmod a+x /build/software/java/jdk-6u33-linux-x64.bin \
 RUN \
 wget -P /build/software/nodejs https://nodejs.org/dist/v8.8.1/node-v8.8.1-linux-x64.tar.xz \
 && tar -xvf /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz --directory /build/software/nodejs \
-&& rm /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz \
+&& rm /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz
+
+RUN \
 wget -P /build/software/nodejs https://nodejs.org/dist/v10.16.2/node-v10.16.2-linux-x64.tar.xz \
 && tar -xvf /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz --directory /build/software/nodejs \
 && rm /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz
