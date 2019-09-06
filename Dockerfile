@@ -163,8 +163,12 @@ RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.g
 RUN wget -P /build/software/go https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.12.5.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.12.5 && rm /build/software/go/go1.12.5.linux-amd64.tar.gz
 
+RUN wget -P /build/software/go https://dl.google.com/go/go1.13.linux-amd64.tar.gz \
+    && tar -xzf /build/software/go/go1.13.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.13 && rm /build/software/go/go1.13.linux-amd64.tar.gz
+
 ENV GOPATH /build/software/go/go
 ENV PATH $GOPATH/bin:/build/software/go/go-1.12.5/bin:$PATH
+ENV PATH $GOPATH/bin:/build/software/go/go-1.13/bin:$PATH
 RUN mkdir -p "$GOPATH/src/github.com/wso2" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN curl https://glide.sh/get | sh
 
@@ -177,7 +181,7 @@ apt-get update  && apt-get -y install python3-pip \
 && apt-get -y install build-essential python3-dev \
 && pip3 install mkdocs==1.0.4 && mkdocs --version \
 && pip3 install mkdocs-material==4.4.0 \
-&& pip3 install pygments==2.4.2 \ 
+&& pip3 install pygments==2.4.2 \
 && apt-get -y install jq
 
 RUN \
