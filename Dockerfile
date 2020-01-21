@@ -191,6 +191,8 @@ apt-get update && apt-get -y install python-pip \
 && pip install beautifulsoup4 \
 && apt-get install python-lxml
 
+RUN rm /usr/bin/java \
+&& ln -s /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java  /usr/bin/java
 
 RUN \
 echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
