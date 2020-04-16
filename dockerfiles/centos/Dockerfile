@@ -17,7 +17,15 @@ FROM centos:centos7.7.1908
 LABEL maintainer="WSO2 Docker Maintainers <dev@wso2.org>"
 
 # install required packages
-RUN yum -y update && yum install -y rpm-build sudo git unzip wget
+RUN \
+    yum -y update \
+    && yum install -y \
+        rpm-build \
+        sudo \
+        git \
+        unzip \
+        wget \
+    && rm -rf /var/cache/yum/*
 
 RUN echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
 && echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
