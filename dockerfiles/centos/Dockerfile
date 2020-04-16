@@ -57,7 +57,3 @@ COPY ../../entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/usr/sbin/sshd", "-D"]
-
-RUN \
-                 echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
-                && echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
