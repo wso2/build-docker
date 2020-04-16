@@ -28,18 +28,18 @@ RUN \
     && rm -rf /var/cache/yum/*
 
 RUN \
-echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
-&& echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
-&& echo "*	soft	nofile	65535" >> /etc/security/limits.conf \
-&& echo "*	hard	nofile	65535" >> /etc/security/limits.conf \
-&& echo "*	soft	nproc	65535" >> /etc/security/limits.conf \
-&& echo "*	hard	nproc	65535" >> /etc/security/limits.conf
+    echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
+    && echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
+    && echo "*	soft	nofile	65535" >> /etc/security/limits.conf \
+    && echo "*	hard	nofile	65535" >> /etc/security/limits.conf \
+    && echo "*	soft	nproc	65535" >> /etc/security/limits.conf \
+    && echo "*	hard	nproc	65535" >> /etc/security/limits.conf
 
 RUN \
-mkdir -p /home/jenkins
+    mkdir -p /home/jenkins
 
 RUN \
-mkdir -p /build/gpg-keys/.gnupg
+    mkdir -p /build/gpg-keys/.gnupg
 ADD .gnupg /build/gpg-keys/.gnupg
 
 ARG JENKINS_REMOTING_VERSION=3.5
@@ -57,3 +57,7 @@ COPY ../../entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/usr/sbin/sshd", "-D"]
+
+RUN \
+                 echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
+                && echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
