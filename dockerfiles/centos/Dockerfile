@@ -38,10 +38,6 @@ RUN \
 RUN \
     mkdir -p /home/jenkins
 
-RUN \
-    mkdir -p /build/gpg-keys/.gnupg
-ADD .gnupg /build/gpg-keys/.gnupg
-
 ARG JENKINS_REMOTING_VERSION=3.5
 
 # See https://github.com/jenkinsci/docker-slave/blob/2.62/Dockerfile#L32
