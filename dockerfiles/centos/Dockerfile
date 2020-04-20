@@ -13,7 +13,7 @@
 # ------------------------------------------------------------------------------
 
 # set base Docker image to centos7.7.1908 CentOS Docker image
-FROM centos:centos7.7.1908
+FROM adoptopenjdk/openjdk8:x86_64-centos-jdk8u252-b09
 LABEL maintainer="WSO2 Docker Maintainers <dev@wso2.org>"
 
 # install required packages
@@ -26,20 +26,6 @@ RUN \
         unzip \
         wget \
     && rm -rf /var/cache/yum/*
-
-RUN \
-    mkdir -p /build/software/java
-
-COPY OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz /build/software/java
-
-RUN \
-    tar -xvzf /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz --directory /build/software/java \
-    && rm /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz
-
-RUN \
-    wget -P /build/software/java https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz \
-    && tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
-    && rm /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz
 
 RUN \
     echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
