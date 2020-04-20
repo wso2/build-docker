@@ -28,6 +28,20 @@ RUN \
     && rm -rf /var/cache/yum/*
 
 RUN \
+    mkdir -p /build/software/java
+
+COPY OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz /build/software/java
+
+RUN \
+    tar -xvzf /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz --directory /build/software/java \
+    && rm /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz
+
+RUN \
+    wget -P /build/software/java https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz \
+    && tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
+    && rm /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz
+
+RUN \
     echo "net.ipv4.ip_local_port_range=15000 61000" >> /etc/sysctl.conf \
     && echo "net.ipv4.tcp_fin_timeout=30" >> /etc/sysctl.conf \
     && echo "*	soft	nofile	65535" >> /etc/security/limits.conf \
@@ -36,7 +50,7 @@ RUN \
     && echo "*	hard	nproc	65535" >> /etc/security/limits.conf
 
 RUN \
-    mkdir -p /home/jenkins
+    mkdir -p /home/jenkinsgpg-keys
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
