@@ -50,7 +50,7 @@ RUN \
     && echo "*	hard	nproc	65535" >> /etc/security/limits.conf
 
 RUN \
-    mkdir -p /home/jenkinsgpg-keys
+    mkdir -p /home/jenkins
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
