@@ -12,8 +12,8 @@
 # with WSO2 governing the purchase of this software and any associated services.
 # ------------------------------------------------------------------------------
 
-# set base Docker image to centos7.7.1908 CentOS Docker image
-FROM centos:centos7.7.1908
+# set base Docker image to adoptopenjdk CentOS Docker image
+FROM adoptopenjdk/openjdk8:x86_64-centos-jdk8u252-b09
 LABEL maintainer="WSO2 Docker Maintainers <dev@wso2.org>"
 
 # install required packages
