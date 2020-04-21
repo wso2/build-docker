@@ -34,11 +34,6 @@ apt-get update \
 && rm -rf /var/lib/apt/lists/*
 
 RUN \
-wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
-&& tar -xvzf /build/software/maven/apache-maven-3.6.3-bin.tar.gz --directory /build/software/maven \
-&& rm /build/software/maven/apache-maven-3.6.3-bin.tar.gz
-
-RUN \
 mkdir -p /build/software/maven \
 && wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz \
 && tar -xvzf /build/software/maven/apache-maven-3.0.5-bin.tar.gz --directory /build/software/maven \
@@ -76,21 +71,6 @@ RUN \
 wget -P /build/software/java https://d3pxv6yz143wms.cloudfront.net/11.0.4.11.1/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz \
 && tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
 && rm /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz
-
-COPY jdk-8u221-linux-x64.tar.gz /build/software/java
-
-RUN \
-tar -xvzf /build/software/java/jdk-8u221-linux-x64.tar.gz --directory /build/software/java \
-&& rm /build/software/java/jdk-8u221-linux-x64.tar.gz \
-&& mkdir -p /build/software/jce \
-&& wget -P /build/software/jce --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip \
-&& unzip -o /build/software/jce/jce_policy-8.zip -d /build/software/jce \
-&& mv /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/local_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/local_policy-original.jar \
-&& mv /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/US_export_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/US_export_policy-original.jar \
-&& cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/ \
-&& cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/ \
-&& rm  /build/software/jce/jce_policy-8.zip \
-&& rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
 COPY jdk-8u171-linux-x64.tar.gz /build/software/java
 
@@ -210,6 +190,26 @@ apt-get update && apt-get -y install python-pip \
 && apt-get install -y libxml2-dev libxslt-dev \
 && pip install beautifulsoup4 \
 && apt-get install python-lxml
+
+RUN \
+wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
+&& tar -xvzf /build/software/maven/apache-maven-3.6.3-bin.tar.gz --directory /build/software/maven \
+&& rm /build/software/maven/apache-maven-3.6.3-bin.tar.gz
+
+COPY jdk-8u221-linux-x64.tar.gz /build/software/java
+
+RUN \
+tar -xvzf /build/software/java/jdk-8u221-linux-x64.tar.gz --directory /build/software/java \
+&& rm /build/software/java/jdk-8u221-linux-x64.tar.gz \
+&& mkdir -p /build/software/jce \
+&& wget -P /build/software/jce --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip \
+&& unzip -o /build/software/jce/jce_policy-8.zip -d /build/software/jce \
+&& mv /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/local_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/local_policy-original.jar \
+&& mv /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/US_export_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/US_export_policy-original.jar \
+&& cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/ \
+&& cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_221/jre/lib/security/policy/unlimited/ \
+&& rm  /build/software/jce/jce_policy-8.zip \
+&& rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
 RUN rm /usr/bin/java \
 && ln -s /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java  /usr/bin/java
