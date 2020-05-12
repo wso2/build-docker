@@ -72,6 +72,11 @@ RUN \
     && tar -xvzf /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz --directory /build/software/java \
     && rm /build/software/java/amazon-corretto-11.0.4.11.1-linux-x64.tar.gz
 
+RUN \
+    wget -P /build/software/java https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.7%2B10/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz \
+    && tar -xvzf /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz --directory /build/software/java \
+    && rm /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz
+
 COPY jdk-8u171-linux-x64.tar.gz /build/software/java
 
 RUN \
