@@ -19,12 +19,19 @@
 FROM ubuntu:bionic
 
 RUN \
-    apt-get update \
-    && apt-get install -y wget \
-    && apt-get install -y curl
-
-RUN \
-    apt-get -q update && apt-get install -y openssh-server software-properties-common git ant curl zip unzip xvfb dbus-x11 ttf-ancient-fonts \
+    apt-get -q update \
+    && apt-get install -y \
+       ant \
+       curl \
+       dbus-x11 \
+       git \
+       openssh-server \
+       software-properties-common \
+       ttf-ancient-fonts \
+       unzip \
+       wget \
+       xvfb \
+       zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /var/run/sshd
@@ -120,7 +127,9 @@ RUN \
 
 RUN \
     add-apt-repository ppa:openjdk-r/ppa -y \
-    && apt-get update && apt-get install -y openjdk-8-jdk \
+    && apt-get update \
+    && apt-get install -y \
+       openjdk-8-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -153,20 +162,31 @@ ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
 RUN \
-    apt-get update  && apt-get -y install python3-pip \
+    apt-get update  \
+    && apt-get -y install \
+       python3-pip \
     && pip3 --version \
-    && apt-get -y install build-essential python3-dev \
-    && pip3 install mkdocs==1.0.4 && mkdocs --version \
+    && apt-get -y install \
+       build-essential \
+       python3-dev \
+    && pip3 install mkdocs==1.0.4 \
+    && mkdocs --version \
     && pip3 install mkdocs-material==4.4.0 \
     && pip3 install pygments==2.4.2 \
     && apt-get -y install jq
 
 RUN \
-    apt-get update && apt-get -y install python-pip \
+    apt-get update \
+    && apt-get -y install \
+       python-pip \
     && pip --version \
-    && apt-get install -y libxml2-dev libxslt-dev \
-    && pip3 install beautifulsoup4 \
-    && apt-get install -y python-lxml
+    && apt-get install -y \
+       libxml2-dev \
+       libxslt-dev \
+    && pip3 install \
+       beautifulsoup4 \
+    && apt-get install -y \
+       python-lxml
 
 RUN \
     wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
