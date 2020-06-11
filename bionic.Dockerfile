@@ -208,6 +208,18 @@ RUN \
     && rm  /build/software/jce/jce_policy-8.zip \
     && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
+ENV JAVA_HOME /build/software/java/jdk1.8.0_221
+
+RUN \
+    wget -P /build/software/android https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip \
+    && unzip /build/software/android/sdk-tools-linux-4333796.zip -d /build/software/android/ \
+    && rm /build/software/android/sdk-tools-linux-4333796.zip \
+    && yes | /build/software/android/tools/bin/sdkmanager --licenses \
+    && chmod 777 -R /build/software/android/ \
+    && unset JAVA_HOME
+
+ENV ANDROID_HOME /build/software/android
+
 RUN rm /usr/bin/java \
     && ln -s /usr/lib/jvm/java-1.8.0-openjdk-amd64/bin/java  /usr/bin/java
 
