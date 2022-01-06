@@ -152,6 +152,7 @@ RUN \
     && echo "\n" | sh /build/software/java/jdk-6u33-linux-x64.bin \
     && rm /build/software/java/jdk-6u33-linux-x64.bin
 
+# Most probably, No one is use Node 8.x now, Check and remove
 RUN \
     wget -P /build/software/nodejs https://nodejs.org/dist/v8.8.1/node-v8.8.1-linux-x64.tar.xz \
     && tar -xvf /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz --directory /build/software/nodejs \
@@ -161,6 +162,13 @@ RUN \
     wget -P /build/software/nodejs https://nodejs.org/dist/v10.16.2/node-v10.16.2-linux-x64.tar.xz \
     && tar -xvf /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz --directory /build/software/nodejs \
     && rm /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz
+
+
+RUN \
+    wget -P /build/software/nodejs https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-x64.tar.xz \
+    && tar -xvf /build/software/nodejs/node-v16.13.1-linux-x64.tar.xz --directory /build/software/nodejs \
+    && rm /build/software/nodejs/node-v16.13.1-linux-x64.tar.xz
+
 
 RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.10.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.10 && rm /build/software/go/go1.10.linux-amd64.tar.gz
