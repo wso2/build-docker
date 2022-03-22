@@ -125,8 +125,6 @@ RUN \
     && rm  /build/software/jce/jce_policy-8.zip \
     && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
-COPY jdk-8u321-linux-x64.tar.gz /build/software/java
-
 RUN \
     add-apt-repository ppa:openjdk-r/ppa -y \
     && apt-get update \

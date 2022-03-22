@@ -105,7 +105,7 @@ RUN \
     && cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_144/jre/lib/security/ \
     && cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_144/jre/lib/security/ \
     && rm  /build/software/jce/jce_policy-8.zip \
-    && rm -r /build/software/jce/UnlimitedJCEPolicyJDK
+    && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
 COPY jdk-8u45-linux-x64.tar.gz /build/software/java
 
