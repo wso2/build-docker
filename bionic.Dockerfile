@@ -138,7 +138,7 @@ RUN \
     && cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/ \
     && cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/ \
     && rm  /build/software/jce/jce_policy-8.zip \
-    && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8 \
+    && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
 RUN \
     add-apt-repository ppa:openjdk-r/ppa -y \
