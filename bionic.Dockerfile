@@ -133,10 +133,10 @@ RUN \
     && mkdir -p /build/software/jce \
     && wget -P /build/software/jce --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip \
     && unzip -o /build/software/jce/jce_policy-8.zip -d /build/software/jce \
-    && mv /build/software/java/jdk1.8.0_321/jre/lib/security/local_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/local_policy-original.jar \
-    && mv /build/software/java/jdk1.8.0_321/jre/lib/security/US_export_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/US_export_policy-original.jar \
-    && cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/ \
-    && cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/ \
+    && mv /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/local_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/local_policy-original.jar \
+    && mv /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/US_export_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/US_export_policy-original.jar \
+    && cp /build/software/jce/UnlimitedJCEPolicyJDK8/local_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/ \
+    && cp /build/software/jce/UnlimitedJCEPolicyJDK8/US_export_policy.jar /build/software/java/jdk1.8.0_321/jre/lib/security/policy/unlimited/ \
     && rm  /build/software/jce/jce_policy-8.zip \
     && rm -r /build/software/jce/UnlimitedJCEPolicyJDK8
 
