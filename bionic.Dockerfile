@@ -180,10 +180,14 @@ RUN wget -P /build/software/go https://dl.google.com/go/go1.13.linux-amd64.tar.g
 RUN wget -P /build/software/go https://dl.google.com/go/go1.14.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.14.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.14 && rm /build/software/go/go1.14.linux-amd64.tar.gz
 
+RUN wget -P /build/software/go https://dl.google.com/go/go1.20.linux-amd64.tar.gz \
+    && tar -xzf /build/software/go/go1.20.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.20 && rm /build/software/go/go1.20.linux-amd64.tar.gz
+
 ENV GOPATH /build/software/go/go
 ENV PATH $GOPATH/bin:/build/software/go/go-1.12.5/bin:$PATH
 ENV PATH $GOPATH/bin:/build/software/go/go-1.13/bin:$PATH
 ENV PATH $GOPATH/bin:/build/software/go/go-1.14/bin:$PATH
+ENV PATH $GOPATH/bin:/build/software/go/go-1.20/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src/github.com/wso2" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN curl https://glide.sh/get | sh
