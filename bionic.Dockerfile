@@ -80,6 +80,11 @@ RUN \
     && tar -xvzf /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz --directory /build/software/java \
     && rm /build/software/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz
 
+RUN \
+    wget -P /build/software/java https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz \
+    && tar -xvzf /build/software/java/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz --directory /build/software/java \
+    && rm /build/software/java/OpenJDK17U-jdk_x64_linux_hotspot_17.0.7_7.tar.gz
+
 COPY jdk-8u171-linux-x64.tar.gz /build/software/java
 
 RUN \
