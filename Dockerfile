@@ -59,6 +59,11 @@ RUN \
     && tar -xvzf /build/software/maven/apache-maven-2.2.1-bin.tar.gz --directory /build/software/maven \
     && rm /build/software/maven/apache-maven-2.2.1-bin.tar.gz
 
+RUN \
+    wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz \
+    && tar -xvzf /build/software/maven/apache-maven-3.8.6-bin.tar.gz --directory /build/software/maven \
+    && rm /build/software/maven/apache-maven-3.8.6-bin.tar.gz
+
 RUN mkdir -p /build/software/java
 
 COPY OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz /build/software/java
