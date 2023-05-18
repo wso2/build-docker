@@ -167,11 +167,6 @@ RUN \
     && tar -xvf /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz --directory /build/software/nodejs \
     && rm /build/software/nodejs/node-v10.16.2-linux-x64.tar.xz
 
-RUN \
-    wget -P /build/software/nodejs https://nodejs.org/dist/v14.21.3/node-v14.21.3-linux-x64.tar.xz \
-    && tar -xvf /build/software/nodejs/node-v14.21.3-linux-x64.tar.xz --directory /build/software/nodejs \
-    && rm /build/software/nodejs/node-v14.21.3-linux-x64.tar.xz
-
 RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.10.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.10 && rm /build/software/go/go1.10.linux-amd64.tar.gz
 
