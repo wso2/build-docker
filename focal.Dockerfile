@@ -36,6 +36,7 @@ RUN \
        xvfb \
        zip \
        sudo \
+       build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /var/run/sshd
