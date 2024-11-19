@@ -42,6 +42,8 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /var/run/sshd
 
+#add maven versions here
+
 RUN \
     mkdir -p /build/software/maven \
     && wget -P /build/software/maven https://archive.apache.org/dist/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz \
@@ -79,6 +81,8 @@ RUN \
     && rm /build/software/maven/apache-maven-2.2.1-bin.tar.gz
 
 RUN mkdir -p /build/software/java
+
+#add java versions here
 
 COPY OpenJDK11U-jdk_x64_linux_hotspot_11.0.4_11.tar.gz /build/software/java
 
@@ -156,6 +160,8 @@ RUN \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+#add node versions here
+
 RUN \
     wget -P /build/software/nodejs https://nodejs.org/dist/v8.8.1/node-v8.8.1-linux-x64.tar.xz \
     && tar -xvf /build/software/nodejs/node-v8.8.1-linux-x64.tar.xz --directory /build/software/nodejs \
@@ -186,6 +192,8 @@ RUN \
     && tar -xvf /build/software/nodejs/node-v22.11.0-linux-x64.tar.xz --directory /build/software/nodejs \
     && rm /build/software/nodejs/node-v22.11.0-linux-x64.tar.xz
 
+#add go versions here
+
 RUN wget -P /build/software/go https://dl.google.com/go/go1.10.linux-amd64.tar.gz \
     && tar -xzf /build/software/go/go1.10.linux-amd64.tar.gz --directory /build/software/go && mv /build/software/go/go /build/software/go/go-1.10 && rm /build/software/go/go1.10.linux-amd64.tar.gz
 
@@ -214,31 +222,31 @@ ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
 RUN \
-   apt-get update  \
-   && apt-get -y install \
-      python3-pip \
-   && pip3 --version \
-   && apt-get -y install \
-      build-essential \
-      python3-dev \
-   && pip3 install mkdocs==1.0.4 \
-   && mkdocs --version \
-   && pip3 install mkdocs-material==4.4.0 \
-   && pip3 install pygments==2.4.2 \
-   && apt-get -y install jq
+    apt-get update  \
+    && apt-get -y install \
+        python3-pip \
+    && pip3 --version \
+    && apt-get -y install \
+        build-essential \
+        python3-dev \
+    && pip3 install mkdocs==1.0.4 \
+    && mkdocs --version \
+    && pip3 install mkdocs-material==4.4.0 \
+    && pip3 install pygments==2.4.2 \
+    && apt-get -y install jq
 
 RUN \
-   apt-get -y update \
-   && apt-get -y install \
-      python-pip \
-   && pip --version \
-   && apt-get install -y \
-      libxml2-dev \
-      libxslt-dev \
-   && pip3 install \
-      beautifulsoup4 \
-   && apt-get install -y \
-      python-lxml
+    apt-get -y update \
+    && apt-get -y install \
+        python-pip \
+    && pip --version \
+    && apt-get install -y \
+        libxml2-dev \
+        libxslt-dev \
+    && pip3 install \
+        beautifulsoup4 \
+    && apt-get install -y \
+        python-lxml
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
@@ -285,7 +293,7 @@ ADD .gnupg /build/gpg-keys/.gnupg
 
 RUN export GPG_TTY=$(tty)
 
-ARG JENKINS_REMOTING_VERSION=4.13.3	
+ARG JENKINS_REMOTING_VERSION=4.13.3
 
 # See https://github.com/jenkinsci/docker-slave/blob/2.62/Dockerfile#L32
 RUN curl --create-dirs -sSLo /usr/share/jenkins/agent.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JENKINS_REMOTING_VERSION/remoting-$JENKINS_REMOTING_VERSION.jar \
